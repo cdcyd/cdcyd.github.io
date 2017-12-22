@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="iOS">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="cyd">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Button(一)"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="iOS" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="cdcyd"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Button(一) - cdcyd</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+    <link rel="icon" href="/img/favicon.png">
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">主页</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="https://github.com/cdcyd">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Button(一)</h1>
+                    
+                    <h2 class="post-subheading">
+                        自定义Button详解
+                    </h2>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2016-09-18
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>在开发中经常会遇到一种情况，就是按钮的UI布局(上图下文、左文右图等)和系统自带的布局(左图右文)不一样<br>这种情况：一种解决办法是创建一个button并在上面加一个imageView和一个label，但是这样遇到图片的位置会根据文字的长度变化的情况，会相当麻烦；另一种解决办法就是自定义一个button，这种方法更加简洁，同时处理点击事件的逻辑也更方便</p>
+<ol>
+<li>首先创建一个类，继承自UIButton</li>
+<li><p>初始化方法</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+(<span class="keyword">instancetype</span>)buttonWithType:(<span class="built_in">UIButtonType</span>)buttonType&#123;</span><br><span class="line">    CCButton *ccButton = [<span class="keyword">super</span> buttonWithType:buttonType];</span><br><span class="line">    <span class="keyword">if</span> (ccButton) &#123;</span><br><span class="line">        ccButton.titleLabel.textAlignment = <span class="built_in">NSTextAlignmentCenter</span>;</span><br><span class="line">        <span class="comment">// 开启button的imageView的剪裁属性，根据imageView的contentMode属性选择是否开启</span></span><br><span class="line">        ccButton.imageView.layer.masksToBounds = <span class="literal">YES</span>;</span><br><span class="line">        ccButton.layer.masksToBounds = <span class="literal">YES</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ccButton;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重写button的几个边界方法，return语句后面的数字，是我打断点得到这几个函数的执行顺序</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回背景边界（background）</span></span><br><span class="line">-(<span class="built_in">CGRect</span>)backgroundRectForBounds:(<span class="built_in">CGRect</span>)bounds&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"背景边界:%@"</span>,<span class="built_in">NSStringFromCGRect</span>(bounds));</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">200</span>, <span class="number">10</span>);<span class="comment">// 6 7  14</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回内容边界 标题+图片+标题与图片之间的间隔(title + image + the image and title separately)</span></span><br><span class="line">-(<span class="built_in">CGRect</span>)contentRectForBounds:(<span class="built_in">CGRect</span>)bounds&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"内容边界:%@"</span>,<span class="built_in">NSStringFromCGRect</span>(bounds));</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">10</span>); <span class="comment">// 1 3 5 8 10 12 15 17 19</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回标题边界</span></span><br><span class="line">-(<span class="built_in">CGRect</span>)titleRectForContentRect:(<span class="built_in">CGRect</span>)contentRect&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"标题边界:%@"</span>,<span class="built_in">NSStringFromCGRect</span>(contentRect));</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">200</span>, <span class="number">30</span>); <span class="comment">// 2 11 18</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回图片边界</span></span><br><span class="line">-(<span class="built_in">CGRect</span>)imageRectForContentRect:(<span class="built_in">CGRect</span>)contentRect&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"图片边界:%@"</span>,<span class="built_in">NSStringFromCGRect</span>(contentRect));</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">60</span>); <span class="comment">// 4 9 13 16 20</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出如下图：<br><img src="http://upload-images.jianshu.io/upload_images/1258499-6d49feb24d8181fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>刚开始对这几个函数不是很明白，经过多次调试，才明白各自的功能：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// 该函数返回的是背景<span class="built_in">view</span>的大小，参数bounds是button的大小，即button.frame</span><br><span class="line">-(CGRect)backgroundRectForBounds:(CGRect)bounds &#123;</span><br><span class="line">    <span class="number">1.</span><span class="built_in">return</span> bounds</span><br><span class="line">    // 此时背景<span class="built_in">view</span>和button的大小相同，是默认的大小</span><br><span class="line"></span><br><span class="line">    <span class="number">2.</span><span class="built_in">return</span>  CGRectMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">50</span>, <span class="number">50</span>)，且button.frame = CGRectMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">100</span>)</span><br><span class="line">    // 此时背景<span class="built_in">view</span>的大小是&#123;&#123;<span class="number">0</span>,<span class="number">0</span>&#125;,&#123;<span class="number">50</span>,<span class="number">50</span>&#125;&#125;，而button的大小是&#123;&#123;<span class="number">0</span>,<span class="number">0</span>&#125;,&#123;<span class="number">100</span>,<span class="number">100</span>&#125;&#125;，在背景<span class="built_in">view</span>之外的button是透明的且不能改变颜色，它可以响应点击事件</span><br><span class="line"></span><br><span class="line">    <span class="number">3.</span><span class="built_in">return</span>  CGRectMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">100</span>)，且button.frame = CGRectMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">50</span>, <span class="number">50</span>)</span><br><span class="line">    // 此时分两种情况，一种是layer.masksToBounds = YES，button的背景<span class="built_in">view</span>和frame都是&#123;&#123;<span class="number">0</span>,<span class="number">0</span>&#125;,&#123;<span class="number">50</span>,<span class="number">50</span>&#125;&#125;；另一种layer.masksToBounds = NO，button的背景<span class="built_in">view</span>的大小是&#123;&#123;<span class="number">0</span>,<span class="number">0</span>&#125;,&#123;<span class="number">100</span>,<span class="number">100</span>&#125;&#125;，button.frame大小是&#123;&#123;<span class="number">0</span>,<span class="number">0</span>&#125;,&#123;<span class="number">50</span>,<span class="number">50</span>&#125;&#125;，此时界面显示是一个&#123;&#123;<span class="number">0</span>,<span class="number">0</span>&#125;,&#123;<span class="number">100</span>,<span class="number">100</span>&#125;&#125;的button，但是只有button的&#123;&#123;<span class="number">0</span>,<span class="number">0</span>&#125;,&#123;<span class="number">50</span>,<span class="number">50</span>&#125;&#125;范围内才会响应点击事件</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 该函数返回内容<span class="built_in">view</span>的大小，内容<span class="built_in">view</span>包括<span class="built_in">title</span> <span class="built_in">view</span> 、<span class="built_in">image</span> <span class="built_in">view</span> 和二者之间的间隔，参数bounds是button的大小，即button.frame</span><br><span class="line">-(CGRect)contentRectForBounds:(CGRect)bounds &#123;</span><br><span class="line">    <span class="number">1.</span><span class="built_in">return</span> bounds</span><br><span class="line">    // 此时在返回<span class="built_in">title</span> <span class="built_in">view</span>边界和<span class="built_in">image</span> <span class="built_in">view</span>边界函数中的contentRect参数的值为button.bounds</span><br><span class="line">    <span class="number">2</span>.：<span class="built_in">return</span> CGRectMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">100</span>)</span><br><span class="line">    // 此时在返回<span class="built_in">title</span> <span class="built_in">view</span>边界和<span class="built_in">image</span> <span class="built_in">view</span>边界函数中的contentRect参数的值为&#123;&#123;<span class="number">0</span>,<span class="number">0</span>&#125;,&#123;<span class="number">100</span>，<span class="number">100</span>&#125;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 该函数返回标题<span class="built_in">view</span>的大小，参数contentRect由函数-(CGRect)contentRectForBounds:(CGRect)bounds确定</span><br><span class="line">-(CGRect)titleRectForContentRect:(CGRect)contentRect</span><br><span class="line"></span><br><span class="line">// 该函数返回图片<span class="built_in">view</span>的大小，参数contentRect由函数-(CGRect)contentRectForBounds:(CGRect)bounds确定</span><br><span class="line">-(CGRect)imageRectForContentRect:(CGRect)contentRect</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最后写一个上图下字的示例，这只是一个简单的例子，具体情况可以根据使用场景调整</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 该自定义button的背景和内容view都和它的frame一样大，所以可以不用重写-(CGRect)backgroundRectForBounds:(CGRect)bounds和-(CGRect)contentRectForBounds:(CGRect)bounds这两个函数</span></span><br><span class="line"><span class="comment">// 返回标题边界</span></span><br><span class="line">-(CGRect)titleRectForContentRect:(CGRect)contentRect&#123;</span><br><span class="line">    <span class="comment">// 这contentRect就是button的frame，我们返回标题view宽和button相同，高为20，在button的底部</span></span><br><span class="line">    <span class="built_in">return</span> CGRectMake(<span class="number">0</span>, contentRect.<span class="built_in">size</span>.<span class="built_in">height</span><span class="number">-20</span>, contentRect.<span class="built_in">size</span>.<span class="built_in">width</span>, <span class="number">20</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回图片边界</span></span><br><span class="line">-(CGRect)imageRectForContentRect:(CGRect)contentRect&#123;</span><br><span class="line">    <span class="comment">// button的image view 是正方形，由于title占了20的高了，所以取height - 20和width中最小的值作为image view的边长</span></span><br><span class="line">    <span class="comment">// 如果图片的位置是根据文字来布局的，这里可以通过self.titleLabel.text拿到title，再计算出图片的位置</span></span><br><span class="line">    CGFloat imageWidth = MIN(contentRect.<span class="built_in">size</span>.<span class="built_in">height</span> - <span class="number">20</span>, contentRect.<span class="built_in">size</span>.<span class="built_in">width</span>);</span><br><span class="line">    <span class="built_in">return</span> CGRectMake(contentRect.<span class="built_in">size</span>.<span class="built_in">width</span>/<span class="number">2</span> - imageWidth/<span class="number">2</span>, <span class="number">0</span>, imageWidth, imageWidth);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>demo地址：<a href="https://github.com/cdcyd/CommonControlsCollection" target="_blank" rel="noopener">https://github.com/cdcyd/CommonControlsCollection</a></p>
+</li>
+</ol>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/cdcyd" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2017 cyd<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

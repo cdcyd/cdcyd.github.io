@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="iOS">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="cyd">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Strong和Copy"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="iOS" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="cdcyd"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Strong和Copy - cdcyd</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+    <link rel="icon" href="/img/favicon.png">
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">主页</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="https://github.com/cdcyd">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Strong和Copy</h1>
+                    
+                    <h2 class="post-subheading">
+                        string分别用strong和copy修饰的区别
+                    </h2>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2017-07-11
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>在iOS中，string是用strong修饰还是用copy修饰？它们有什么区别呢？本文主要就来讨论这两个问题，在此之前，我们需要知道两个术语，浅拷贝和深拷贝<br>浅拷贝：指对内存地址的复制，让目标对象指针和源对象指向同一片内存空间，当内存销毁的时候，指向这片内存的指针需要赋值，要不然会成为野指针<br>深拷贝：指对对象具体内容复制，重新分配对象的内存地址，拷贝结束之后，两个对象虽然值是相同的，但是内存地址不一样，两个对象也互不影响，互不干涉</p>
+<p>测试一下<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *str = <span class="string">@"test"</span>;</span><br><span class="line"><span class="built_in">NSString</span> *copyStr = [str <span class="keyword">copy</span>];</span><br><span class="line"><span class="built_in">NSMutableString</span> *mutStr = [str mutableCopy];</span><br><span class="line">    </span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"指针地址:str:%p--copyStr:%p--mutStr:%p"</span>,&amp;str,&amp;copyStr,&amp;mutStr);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"内存地址:str:%p--copyStr:%p--mutStr:%p"</span>,str,copyStr,mutStr);</span><br></pre></td></tr></table></figure></p>
+<p>运行结果：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">指针地址<span class="selector-pseudo">:str</span><span class="selector-pseudo">:0x16fb31678--copyStr</span><span class="selector-pseudo">:0x16fb31670--mutStr</span><span class="selector-pseudo">:0x16fb31668</span></span><br><span class="line">内存地址<span class="selector-pseudo">:str</span><span class="selector-pseudo">:0x1002d4080--copyStr</span><span class="selector-pseudo">:0x1002d4080--mutStr</span><span class="selector-pseudo">:0x1c024af80</span></span><br></pre></td></tr></table></figure></p>
+<p>可以看出：copy实现了一次浅拷贝，mutableCopy实现了一次深拷贝<br>实际上，对于copy和mutableCopy我们可以得出下表的结论<br><img src="http://upload-images.jianshu.io/upload_images/1258499-6bd5b734187d57ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>理解了copy作用，我们就不难理解属性中的copy和strong了，实际上在属性中copy比strong多了一步，即在setter方法中<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (void)setName:(<span class="built_in">id</span>)<span class="built_in">name</span>&#123;</span><br><span class="line">    _name = [<span class="built_in">name</span> <span class="keyword">copy</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>举个例子：假设有这样一段代码<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@property(copy)</span>id obj;</span><br><span class="line"></span><br><span class="line">self.obj = <span class="keyword">object</span>;</span><br><span class="line"></span><br><span class="line">此时obj是什么呢？有下面两种情况：</span><br><span class="line"><span class="number">1.</span> <span class="keyword">object</span>是不可变对象，将会把<span class="keyword">object</span>浅拷贝一次，赋值给obj</span><br><span class="line"><span class="number">2.</span> <span class="keyword">object</span>是可变对象，将会把<span class="keyword">object</span>深拷贝一次，赋值给obj</span><br><span class="line">如果obj是用strong修饰的，就没有拷贝一说了，将会直接把<span class="keyword">object</span>赋值给obj</span><br><span class="line"></span><br><span class="line">在内存计数方面</span><br><span class="line">strong 会使<span class="keyword">object</span>引用计数+<span class="number">1</span>，obj的引用计数为<span class="number">1</span></span><br><span class="line">copy   如果<span class="keyword">object</span>是不可变对象，<span class="keyword">object</span>引用计数+<span class="number">1</span>，obj的引用计数为<span class="number">1</span></span><br><span class="line">       如果<span class="keyword">object</span>是可变对象，会将<span class="keyword">object</span>深拷贝一份，<span class="keyword">object</span>的引用计数不会变，obj的引用计数为<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>综上所述，我们可以得出以下结论</p>
+<ol>
+<li>当属性本身是可变对象时<br>此时只能用strong修饰，因为如下图，下图中，name属性经过setter时，得到的永远是不可变对象，当调用可变方法时，就会崩溃<br><img src="http://upload-images.jianshu.io/upload_images/1258499-1a9d57ee8a8e4763.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>当属性的赋值来源是可变对象时，如下图，看日志输出，发现当使用strong时，来源发生改变，属性值会跟着发生改变，当实用copy时，来源发生改变，属性不会跟着变<br><img src="http://upload-images.jianshu.io/upload_images/1258499-5a401ecb8e554a8c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>当属性的赋值来源是不可变对象时，如下图，发现strong和copy并没有什么区别<br><img src="http://upload-images.jianshu.io/upload_images/1258499-c590e302f3ea3c9b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>所以我们在选用修饰词时，我们要根据，属性本身是否可变，对属性赋值的来源是否可变，属性是否需要跟随来源的变化而变化等情况来选用属性的修饰词，不过，在实际开发中，大多数情况都是用copy</li>
+</ol>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/cdcyd" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2017 cyd<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
