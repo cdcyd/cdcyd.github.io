@@ -110,18 +110,19 @@
 
 
   <meta name="description" content="一、权限问题在iOS8以后，应用定位需要获取用户授权，我们可以请求的定位权限有两种：1.仅在使用时定位requestWhenInUseAuthorization(应用在前台才能定位)；2.始终可以定位requestAlwaysAuthorization(应用在前后台都可以定位)在获取权限之前，我们需要在plist文件中添加对应的key，如下图注意，key后面的value，会在向用户请求权限的弹框中">
+<meta name="keywords" content="CoreLocation">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CoreLocation">
+<meta property="og:title" content="CoreLocation框架的定位和逆地址解析详解">
 <meta property="og:url" content="https://cdcyd.github.io/2017/11/10/CoreLocation/index.html">
-<meta property="og:site_name" content="cdcyd">
+<meta property="og:site_name" content="cyd’s blog">
 <meta property="og:description" content="一、权限问题在iOS8以后，应用定位需要获取用户授权，我们可以请求的定位权限有两种：1.仅在使用时定位requestWhenInUseAuthorization(应用在前台才能定位)；2.始终可以定位requestAlwaysAuthorization(应用在前后台都可以定位)在获取权限之前，我们需要在plist文件中添加对应的key，如下图注意，key后面的value，会在向用户请求权限的弹框中">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1258499-73ffc9fa2a57b318.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1258499-8a5e7064deac3b15.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1258499-addfd3af7a88a951.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-12-22T09:01:38.000Z">
+<meta property="og:updated_time" content="2018-05-14T01:58:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CoreLocation">
+<meta name="twitter:title" content="CoreLocation框架的定位和逆地址解析详解">
 <meta name="twitter:description" content="一、权限问题在iOS8以后，应用定位需要获取用户授权，我们可以请求的定位权限有两种：1.仅在使用时定位requestWhenInUseAuthorization(应用在前台才能定位)；2.始终可以定位requestAlwaysAuthorization(应用在前后台都可以定位)在获取权限之前，我们需要在plist文件中添加对应的key，如下图注意，key后面的value，会在向用户请求权限的弹框中">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1258499-73ffc9fa2a57b318.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
@@ -140,7 +141,7 @@
   };
 </script>
 
-  <title>CoreLocation | cdcyd</title>
+  <title>CoreLocation框架的定位和逆地址解析详解 | cyd’s blog</title>
   
 
 
@@ -198,12 +199,12 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">cdcyd</span>
+        <span class="site-title">cyd’s blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle">程序猿</p>
+        <p class="site-subtitle"></p>
       
   </div>
 
@@ -236,7 +237,7 @@
         
           
           <li class="menu-item menu-item-about">
-    <a href="/about/" rel="section">
+    <a href="https:/www.jianshu.com/u/2841ca1b2535" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
   </li>
         
@@ -328,11 +329,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="cyd">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/icon.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="cdcyd">
+      <meta itemprop="name" content="cyd’s blog">
     </span>
 
     
@@ -340,7 +341,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CoreLocation
+          <h1 class="post-title" itemprop="name headline">CoreLocation框架的定位和逆地址解析详解
               
             
           </h1>
@@ -382,12 +383,30 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2017-12-22 17:01:38" itemprop="dateModified" datetime="2017-12-22T17:01:38+08:00">2017-12-22</time>
+                <time title="修改时间：2018-05-14 09:58:56" itemprop="dateModified" datetime="2018-05-14T09:58:56+08:00">2018-05-14</time>
               
             
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -398,6 +417,34 @@
 
           
 
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">5.7k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">5 分钟</span>
+              
+            </div>
           
 
           
@@ -450,6 +497,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/CoreLocation/" rel="tag"># CoreLocation</a>
+          
+        </div>
+      
 
       
       
@@ -459,8 +512,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/12/Textfield/" rel="next" title="Textfield">
-                <i class="fa fa-chevron-left"></i> Textfield
+              <a href="/2017/09/12/CCTextfield/" rel="next" title="自定义Textfield，解决输入限制和键盘弹出问题">
+                <i class="fa fa-chevron-left"></i> 自定义Textfield，解决输入限制和键盘弹出问题
               </a>
             
           </div>
@@ -469,8 +522,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/11/DeviceModel/" rel="prev" title="DeviceModel">
-                DeviceModel <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/11/DeviceModel/" rel="prev" title="判断iPhone设备型号">
+                判断iPhone设备型号 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -535,11 +588,11 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/images/avatar.gif"
+                src="/images/icon.jpg"
                 alt="cyd" />
             
               <p class="site-author-name" itemprop="name">cyd</p>
-              <p class="site-description motion-element" itemprop="description">iOS</p>
+              <p class="site-description motion-element" itemprop="description">iOS、AVFoundation、OpenGL ES</p>
           </div>
 
           
@@ -549,7 +602,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -564,7 +617,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -579,7 +636,27 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -609,6 +686,20 @@
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.jianshu.com/u/2841ca1b2535" title="简书主页" target="_blank">简书主页</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           
@@ -663,7 +754,21 @@
   <span class="author" itemprop="copyrightHolder">cyd</span>
 
   
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">101k</span>
+  
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">1:false</span>
   
 </div>
 

@@ -109,26 +109,25 @@
 
 
 
-  <meta name="description" content="项目由来，最近我开发的项目中，存在很多输入框，它们都有输入限制，比如帐号(限制6位)、密码(限制16位)、手机号(限制只输入数字，11位)、身份证号(限制只输入数字和字母，18位)，金额(限制浮点数)、备注(限制200字)等，类似的输入框还有很多，刚开始我使用UITextField，再加上限制用户输入又是很麻烦的事情，所以一遇到有输入框的vc，就会有大量的限制代码，并且很多都是重复的。在这种情">
+  <meta name="description" content="基本变换：平移(translation)、旋转(roration)、缩放(scale)、透视(perspective)，这4个基本变换可以单独使用，也可以组合使用(两个基本变换可以使用矩阵乘法组合起来)注意：当使用组合变换时，顺序很重要，例如平移和旋转组合，先平移和先旋转会得到两个完全不不同的结果 所有的基础变换矩阵，都可以通过GLKit/GLKMatrix4.h里的函数构建  平移// 返回一个">
+<meta name="keywords" content="OpenGL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Textfield">
-<meta property="og:url" content="https://cdcyd.github.io/2017/09/12/Textfield/index.html">
-<meta property="og:site_name" content="cdcyd">
-<meta property="og:description" content="项目由来，最近我开发的项目中，存在很多输入框，它们都有输入限制，比如帐号(限制6位)、密码(限制16位)、手机号(限制只输入数字，11位)、身份证号(限制只输入数字和字母，18位)，金额(限制浮点数)、备注(限制200字)等，类似的输入框还有很多，刚开始我使用UITextField，再加上限制用户输入又是很麻烦的事情，所以一遇到有输入框的vc，就会有大量的限制代码，并且很多都是重复的。在这种情">
+<meta property="og:title" content="OpenGL ES(四) 变换">
+<meta property="og:url" content="https://cdcyd.github.io/2016/10/11/OpenGL ES(四) 变换/index.html">
+<meta property="og:site_name" content="cyd’s blog">
+<meta property="og:description" content="基本变换：平移(translation)、旋转(roration)、缩放(scale)、透视(perspective)，这4个基本变换可以单独使用，也可以组合使用(两个基本变换可以使用矩阵乘法组合起来)注意：当使用组合变换时，顺序很重要，例如平移和旋转组合，先平移和先旋转会得到两个完全不不同的结果 所有的基础变换矩阵，都可以通过GLKit/GLKMatrix4.h里的函数构建  平移// 返回一个">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1258499-e4a26fb02a454a4f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-12-22T08:58:17.000Z">
+<meta property="og:updated_time" content="2018-05-14T05:36:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Textfield">
-<meta name="twitter:description" content="项目由来，最近我开发的项目中，存在很多输入框，它们都有输入限制，比如帐号(限制6位)、密码(限制16位)、手机号(限制只输入数字，11位)、身份证号(限制只输入数字和字母，18位)，金额(限制浮点数)、备注(限制200字)等，类似的输入框还有很多，刚开始我使用UITextField，再加上限制用户输入又是很麻烦的事情，所以一遇到有输入框的vc，就会有大量的限制代码，并且很多都是重复的。在这种情">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1258499-e4a26fb02a454a4f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="OpenGL ES(四) 变换">
+<meta name="twitter:description" content="基本变换：平移(translation)、旋转(roration)、缩放(scale)、透视(perspective)，这4个基本变换可以单独使用，也可以组合使用(两个基本变换可以使用矩阵乘法组合起来)注意：当使用组合变换时，顺序很重要，例如平移和旋转组合，先平移和先旋转会得到两个完全不不同的结果 所有的基础变换矩阵，都可以通过GLKit/GLKMatrix4.h里的函数构建  平移// 返回一个">
 
 
 
 
 
 
-  <link rel="canonical" href="https://cdcyd.github.io/2017/09/12/Textfield/"/>
+  <link rel="canonical" href="https://cdcyd.github.io/2016/10/11/OpenGL ES(四) 变换/"/>
 
 
 
@@ -138,7 +137,7 @@
   };
 </script>
 
-  <title>Textfield | cdcyd</title>
+  <title>OpenGL ES(四) 变换 | cyd’s blog</title>
   
 
 
@@ -196,12 +195,12 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">cdcyd</span>
+        <span class="site-title">cyd’s blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle">程序猿</p>
+        <p class="site-subtitle"></p>
       
   </div>
 
@@ -234,7 +233,7 @@
         
           
           <li class="menu-item menu-item-about">
-    <a href="/about/" rel="section">
+    <a href="https:/www.jianshu.com/u/2841ca1b2535" rel="section">
       <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
   </li>
         
@@ -321,16 +320,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cdcyd.github.io/2017/09/12/Textfield/">
+    <link itemprop="mainEntityOfPage" href="https://cdcyd.github.io/2016/10/11/OpenGL ES(四) 变换/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="cyd">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/icon.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="cdcyd">
+      <meta itemprop="name" content="cyd’s blog">
     </span>
 
     
@@ -338,7 +337,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Textfield
+          <h1 class="post-title" itemprop="name headline">OpenGL ES(四) 变换
               
             
           </h1>
@@ -363,7 +362,7 @@
                 
               
 
-              <time title="创建时间：2017-09-12 18:00:00" itemprop="dateCreated datePublished" datetime="2017-09-12T18:00:00+08:00">2017-09-12</time>
+              <time title="创建时间：2016-10-11 16:41:00" itemprop="dateCreated datePublished" datetime="2016-10-11T16:41:00+08:00">2016-10-11</time>
             
 
             
@@ -380,12 +379,30 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2017-12-22 16:58:17" itemprop="dateModified" datetime="2017-12-22T16:58:17+08:00">2017-12-22</time>
+                <time title="修改时间：2018-05-14 13:36:20" itemprop="dateModified" datetime="2018-05-14T13:36:20+08:00">2018-05-14</time>
               
             
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OpenGL-ES/" itemprop="url" rel="index"><span itemprop="name">OpenGL ES</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -396,6 +413,34 @@
 
           
 
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">2.2k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">2 分钟</span>
+              
+            </div>
           
 
           
@@ -413,19 +458,26 @@
       
 
       
-        <p><img src="http://upload-images.jianshu.io/upload_images/1258499-e4a26fb02a454a4f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Demo截屏"></p>
+        <p>基本变换：平移(translation)、旋转(roration)、缩放(scale)、透视(perspective)，这4个基本变换可以单独使用，也可以组合使用(两个基本变换可以使用矩阵乘法组合起来)<br><strong><em>注意：当使用组合变换时，顺序很重要，例如平移和旋转组合，先平移和先旋转会得到两个完全不不同的结果</em></strong></p>
+<p>所有的基础变换矩阵，都可以通过GLKit/GLKMatrix4.h里的函数构建</p>
 <ul>
-<li>项目由来，最近我开发的项目中，存在很多输入框，它们都有输入限制，比如帐号(限制6位)、密码(限制16位)、手机号(限制只输入数字，11位)、身份证号(限制只输入数字和字母，18位)，金额(限制浮点数)、备注(限制200字)等，类似的输入框还有很多，刚开始我使用UITextField，再加上限制用户输入又是很麻烦的事情，所以一遇到有输入框的vc，就会有大量的限制代码，并且很多都是重复的。在这种情况下，我考虑封装一个TextField，用于解决限制用户输入的功能，顺便在把键盘弹出的问题也解决了</li>
-<li>所以CCTextField的主要功能，<strong>它能一行代码解决输入限制问题，并且内部处理键盘弹出问题</strong></li>
-<li>项目地址：<a href="https://github.com/cdcyd/CCTextField" target="_blank" rel="noopener">https://github.com/cdcyd/CCTextField</a> 有兴趣的最好把Demo下载看看</li>
-<li><p>CCTextField 用法，CCTextField继承自UITextField，所以它和UITextField的用法一样，我们只需要多设置一个属性</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_ENUM(NSInteger, CCCheckType)&#123;</span><br><span class="line">    CCCheckNone,            <span class="regexp">//</span> 不做校验</span><br><span class="line">    CCCheckAccount,         <span class="regexp">//</span> 帐号(字母开头，允许字母、数字、下划线，长度在<span class="number">6</span>个以上)</span><br><span class="line">    CCCheckPassword,        <span class="regexp">//</span> 密码(以字母开头，只能包含字母、数字和下划线，长度在<span class="number">6</span>个以上)</span><br><span class="line">    CCCheckStrongPassword,  <span class="regexp">//</span> 强密码(必须包含大小写字母和数字的组合，不能使用特殊字符，长度在<span class="number">6</span>个以上)</span><br><span class="line">    CCCheckEmail,           <span class="regexp">//</span> 邮箱</span><br><span class="line">    CCCheckZipCode,         <span class="regexp">//</span> 邮编</span><br><span class="line">    CCCheckDomain,          <span class="regexp">//</span> 域名</span><br><span class="line">    </span><br><span class="line">    CCCheckPhone,           <span class="regexp">//</span> 手机号</span><br><span class="line">    CCCheckIDCard,          <span class="regexp">//</span> 身份证(<span class="number">18</span>位)</span><br><span class="line">    CCCheckFloat,           <span class="regexp">//</span> 浮点数(校验格式: <span class="string">"10"</span>、<span class="string">"10.0"</span>)</span><br><span class="line">    CCCheckDate,            <span class="regexp">//</span> 日期(校验格式: <span class="string">"xxxx-xx-xx"</span>、<span class="string">"xxxx-x-x"</span>)</span><br><span class="line">    CCCheckMoney,           <span class="regexp">//</span> 金额(校验格式: <span class="string">"10000.0"</span>、<span class="string">"10,000.0"</span>、<span class="string">"10000"</span>、<span class="string">"10,000"</span>)</span><br><span class="line">    CCCheckTel,             <span class="regexp">//</span> 座机(校验格式: <span class="string">"xxx-xxxxxxx"</span>、<span class="string">"xxxx-xxxxxxxx"</span>、<span class="string">"xxx-xxxxxxx"</span>、<span class="string">"xxx-xxxxxxxx"</span>、<span class="string">"xxxxxxx"</span>、<span class="string">"xxxxxxxx"</span>)</span><br><span class="line">&#125;;</span><br><span class="line"><span class="variable">@property</span>(nonatomic, assign)CCCheckType check;</span><br></pre></td></tr></table></figure>
-<p>在check的setter方法中，还设置了键盘类型、长度限制等，如果对键盘和输入限制与setter方法设置的不符，则可以在设置check属性之后，再设置键盘类型和长度限制，设置长度限制可以通过下面两个属性设置，但一定要在check之后设置，不然可能会有问题</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>)<span class="built_in">NSInteger</span> minLimit;</span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>)<span class="built_in">NSInteger</span> maxLimit;</span><br></pre></td></tr></table></figure>
-<p>所以</p>
-<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CCTextField *<span class="keyword">textField</span> = [[CCTextField alloc] initWithFrame:CGRectMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">200</span>, <span class="number">30</span>)];</span><br><span class="line"><span class="comment">// 设置输入类型</span></span><br><span class="line"><span class="keyword">textField</span>.check = CCCheckPhone;</span><br><span class="line"><span class="comment">// 设置文字最小长度</span></span><br><span class="line"><span class="comment">// textField.minLimit = 0;</span></span><br><span class="line"><span class="comment">// 设置文字最大长度</span></span><br><span class="line"><span class="comment">// textField.maxLimit = 16;</span></span><br></pre></td></tr></table></figure>
+<li><p>平移<br>// 返回一个平移矩阵：tx ty tz 分别是在x y z 轴的移动距离，<br>GLKMatrix4MakeTranslation(float tx, float ty, float tz)</p>
+</li>
+<li><p>旋转<br>// 返回一个旋转矩阵<br>// radians是旋转角度，它接受一个弧度值，可以用GLKMathDegreesToRadians(30)，将角度转换为弧度<br>// 后面的x y z组成一个向量，顶点将围绕这个向量做旋转(如{1.0，0.0，0.0}，将会绕x轴做旋转)<br>GLKMatrix4MakeRotation(float radians, float x, float y, float z)</p>
+</li>
+<li><p>缩放<br>// 返回一个缩放矩阵：sx sy sz 分别是x y z轴方向上的缩放倍数<br>GLKMatrix4MakeScale(float sx, float sy, float sz)</p>
+</li>
+<li><p>透视<br>视域(viewing volume)：在OpenGL中，使用视域来决定那些元素将会显示，如果元素在视域外，那么它将会被丢弃，也不会显示，如果在视域内，元素才会被显示<br> 投影(prohection):投影分为正射投影和透视投影，我们可以通过它来设置投影矩阵来设置视域，在OpenGL中，默认的投影矩阵是一个立方体，即x y z 分别是-1.0~1.0的距离，如果超出该区域，将不会被显示。</p>
+<ul>
+<li>正射投影(orthographic projection)：GLKMatrix4MakeOrtho(float left,  float righ,  float bottom, float top, float nearZ, float farZ)，该函数返回一个正射投影的矩阵，它定义了一个由 left、right、bottom、top、near、far 所界定的一个矩形视域。此时，视点与每个位置之间的距离对于投影将毫无影响。</li>
+<li>透视投影(perspective projection)：GLKMatrix4MakeFrustum(float left, float right,float bottom, float top, float nearZ, float farZ)，该函数返回一个透视投影的矩阵，它定义了一个由 left、right、bottom、top、near、far 所界定的一个平截头体(椎体切去顶端之后的形状)视域。此时，视点与每个位置之间的距离越远，对象越小。</li>
+</ul>
+<p>// GLKMatrix4.h为我们提供了一个快速创建透视矩阵的函数<br>// fovyRadians是视角，它接受一个弧度值，可以用GLKMathDegreesToRadians(30)，将角度转换为弧度<br>// aspect视图宽高比，nearZ近视点，farZ远视点<br>GLKMatrix4MakePerspective(float fovyRadians, float aspect, float nearZ, float farZ)</p>
 </li>
 </ul>
+<p>projectionMatrix 和 modelviewMatrix<br>当我们构建好了变换矩阵之后怎么传递的OpenGL呢？GLKBaseEffect有一个transform的属性，其中有两个矩阵分别是projectionMatrix和modelviewMatrix<br>projectionMatrix：投影矩阵，下面就是设置一个正投影的代码<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 伪代码</span></span><br><span class="line">const GLFloat aspect = view.width/view.hight；</span><br><span class="line">baseEffect.transform.projectionMatrix = GLKMatrix4MakeOrtho(<span class="number">-0.5</span> * aspect,</span><br><span class="line">                                                            <span class="number">0.5</span> * aspect,</span><br><span class="line">                                                            <span class="number">-0.5</span>,</span><br><span class="line">                                                            <span class="number">0.5</span>,</span><br><span class="line">                                                            <span class="number">-50</span>,</span><br><span class="line">                                                            <span class="number">50</span>);</span><br></pre></td></tr></table></figure></p>
+<p>modelviewMatrix：模型矩阵，下面是设置一个沿z轴平移的矩阵<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 伪代码</span></span><br><span class="line">baseEffect.transform.modelviewMatrix = GLKMatrix4MakeTranslation(<span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">-3.0f</span>);</span><br></pre></td></tr></table></figure></p>
+<p>Demo下载地址：<a href="https://github.com/cdcyd/CCOpenGLES" target="_blank" rel="noopener">https://github.com/cdcyd/CCOpenGLES</a></p>
 
       
     </div>
@@ -444,6 +496,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/OpenGL/" rel="tag"># OpenGL</a>
+          
+        </div>
+      
 
       
       
@@ -453,8 +511,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/11/Strong和Copy/" rel="next" title="Strong和Copy">
-                <i class="fa fa-chevron-left"></i> Strong和Copy
+              <a href="/2016/09/18/Button(一)/" rel="next" title="自定义Button详解">
+                <i class="fa fa-chevron-left"></i> 自定义Button详解
               </a>
             
           </div>
@@ -463,8 +521,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/10/CoreLocation/" rel="prev" title="CoreLocation">
-                CoreLocation <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/14/OpenGL ES(五) 光照/" rel="prev" title="OpenGL ES(五) 光照">
+                OpenGL ES(五) 光照 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -520,11 +578,11 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/images/avatar.gif"
+                src="/images/icon.jpg"
                 alt="cyd" />
             
               <p class="site-author-name" itemprop="name">cyd</p>
-              <p class="site-description motion-element" itemprop="description">iOS</p>
+              <p class="site-description motion-element" itemprop="description">iOS、AVFoundation、OpenGL ES</p>
           </div>
 
           
@@ -534,7 +592,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -549,7 +607,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -564,7 +626,27 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -594,6 +676,20 @@
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.jianshu.com/u/2841ca1b2535" title="简书主页" target="_blank">简书主页</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           
@@ -632,7 +728,21 @@
   <span class="author" itemprop="copyrightHolder">cyd</span>
 
   
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">101k</span>
+  
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">1:false</span>
   
 </div>
 
